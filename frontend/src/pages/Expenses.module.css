@@ -1,0 +1,199 @@
+.expensesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.actionsBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.searchWrapper {
+    position: relative;
+    width: 300px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.1);
+}
+
+.rightActions {
+    display: flex;
+    gap: 1rem;
+}
+
+.filterBtn,
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.filterBtn {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.filterBtn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.addBtn {
+    background: var(--primary);
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.addBtn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Table Styles */
+.tableCard {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    /* For border radius */
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.expensesTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expensesTable th,
+.expensesTable td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.expensesTable th {
+    background: rgba(15, 23, 42, 0.5);
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.expensesTable tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.expensesTable tr:last-child td {
+    border-bottom: none;
+}
+
+.categoryBadge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.fw500 {
+    font-weight: 500;
+}
+
+.amount {
+    font-family: 'Inter', sans-serif;
+    /* Ensure monospaced feel if preferred */
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.actionButtons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.iconBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.iconBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+}
+
+.deleteBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+/* Utilities */
+.textRight {
+    text-align: right;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .actionsBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchWrapper {
+        width: 100%;
+    }
+
+    .rightActions {
+        justify-content: space-between;
+    }
+
+    .tableCard {
+        overflow-x: auto;
+    }
+
+    .expensesTable th,
+    .expensesTable td {
+        white-space: nowrap;
+    }
+}

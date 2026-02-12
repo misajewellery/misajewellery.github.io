@@ -1,0 +1,206 @@
+.collectionPage {
+    padding: 120px 0 64px;
+    min-height: 80vh;
+    background: var(--color-bg);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.title {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--color-text);
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+
+.title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-gold);
+    margin: 12px auto 0;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.noProducts {
+    text-align: center;
+    padding: 100px 0;
+    color: var(--color-text-muted);
+    font-size: 1.2rem;
+}
+
+/* Reusing Product Card Styles from Home */
+.productCard {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s ease;
+}
+
+.productCard:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 25px rgba(10, 61, 46, 0.4);
+}
+
+.productImg {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.productInfo {
+    padding: 8px;
+}
+
+.productName {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.productMeta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+}
+
+.productPrice {
+    color: var(--color-gold);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.productActions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btnInquiry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #C9A23F 0%, #E6C15A 50%, #B8902E 100%);
+    color: #050A15;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(201, 162, 63, 0.2);
+}
+
+.btnInquiry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201, 162, 63, 0.4);
+    background: linear-gradient(135deg, #B8902E 0%, #E6C15A 50%, #C9A23F 100%);
+}
+
+.btnInquiry svg {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.btnDetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1.5px solid #D4AF37;
+    color: #D4AF37;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnDetails:hover {
+    background: #D4AF37;
+    color: #050A15;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .productGrid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Filter Bar */
+.filterBar {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filterBtn {
+    padding: 10px 24px;
+    border: 1px solid rgba(197, 160, 101, 0.3);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.filterBtn:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.filterBtn.active {
+    background: var(--color-gold);
+    color: #050A15;
+    border-color: var(--color-gold);
+}

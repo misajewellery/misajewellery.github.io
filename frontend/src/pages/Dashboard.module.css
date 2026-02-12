@@ -1,0 +1,113 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.statCard {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.statTrend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.trendUp {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+}
+
+.trendDown {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+.statValue {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.statLabel {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Charts */
+.chartsContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.chartCard {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chartCard h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+}
+
+.chartWrapper {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.pieWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .chartsContainer {
+        grid-template-columns: 1fr;
+    }
+}

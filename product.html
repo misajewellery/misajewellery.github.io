@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Floral Necklace | MISA Jewellery</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Styles for Product Page */
+        .product-detail-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-white);
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-gray-light);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Simple zoom effect on hover */
+        .main-image:hover img {
+            transform: scale(1.2);
+            cursor: zoom-in;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid transparent;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .thumb.active {
+            border-color: var(--color-gold);
+            opacity: 1;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: var(--spacing-md);
+        }
+
+        .pd-title {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .pd-price {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: var(--color-gray-medium);
+            text-decoration: line-through;
+            margin-left: var(--spacing-sm);
+            font-weight: 400;
+        }
+
+        .pd-meta {
+            margin-bottom: var(--spacing-lg);
+            border-top: 1px solid var(--color-gray-light);
+            border-bottom: 1px solid var(--color-gray-light);
+            padding: var(--spacing-md) 0;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .meta-label {
+            color: var(--color-gray-medium);
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-weight: 600;
+        }
+
+        .pd-description {
+            margin-bottom: var(--spacing-lg);
+            color: #555;
+        }
+
+        .pd-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .trust-badges-small {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .badge-small {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .badge-small i {
+            color: var(--color-gold);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="C:/Users/AE/.gemini/antigravity/brain/9f293631-b3f2-425d-9428-3f01c92640ba/uploaded_media_1769504380522.png"
+                    alt="MISA Logo" class="brand-custom-icon">
+                <div class="logo-text">
+                    <span class="brand-name">MISA</span>
+                    <span class="brand-subtitle">Jewellery</span>
+                </div>
+            </a>
+            <div class="nav-icons">
+                <div class="nav-icon"><i class="fas fa-search"></i></div>
+                <div class="nav-icon"><i class="fas fa-shopping-bag"></i></div>
+                <div class="nav-icon"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding: 20px 16px; font-size: 0.9rem; color: #888;">
+        <a href="index.html">Home</a> / <a href="#">Necklaces</a> / Diamond Floral Necklace
+    </div>
+
+    <!-- Product Detail -->
+    <section class="product-detail-section">
+        <div class="container product-container">
+            <!-- Gallery -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="C:/Users/AE/.gemini/antigravity/brain/02a6b797-7389-4450-ab47-62142868d97c/cat_necklace_1769491632911.png"
+                        alt="Diamond Floral Necklace" id="mainImg">
+                </div>
+                <div class="thumbnails">
+                    <div class="thumb active" onclick="changeImage(this.querySelector('img').src)">
+                        <img src="C:/Users/AE/.gemini/antigravity/brain/02a6b797-7389-4450-ab47-62142868d97c/cat_necklace_1769491632911.png"
+                            alt="View 1">
+                    </div>
+                    <div class="thumb" onclick="changeImage(this.querySelector('img').src)">
+                        <img src="C:/Users/AE/.gemini/antigravity/brain/02a6b797-7389-4450-ab47-62142868d97c/hero_banner_1769491597848.png"
+                            alt="View 2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details -->
+            <div class="product-details">
+                <h1 class="pd-title">Diamond Floral Necklace</h1>
+                <div class="pd-price">₹1,25,000 <span class="old-price">₹1,45,000</span></div>
+
+                <p class="pd-description">
+                    Exquisite craftsmanship meets timeless elegance. This 18K gold necklace features intricate floral
+                    motifs embedded with certified VVS diamonds. Perfect for weddings and special occasions.
+                </p>
+
+                <div class="pd-meta">
+                    <div class="meta-row">
+                        <span class="meta-label">Gold Purity</span>
+                        <span class="meta-value">18K (750)</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Gross Weight</span>
+                        <span class="meta-value">12.5 Grams</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Diamond Quality</span>
+                        <span class="meta-value">VVS - EF</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Certification</span>
+                        <span class="meta-value">BIS Hallmarked + IGI</span>
+                    </div>
+                </div>
+
+                <div class="pd-actions">
+                    <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Diamond Floral Necklace"
+                        class="btn btn-whatsapp" style="text-align: center; border-radius: 4px; padding: 12px;">
+                        <i class="fab fa-whatsapp"></i> Inquiry on WhatsApp
+                    </a>
+                </div>
+
+                <div class="trust-badges-small">
+                    <div class="badge-small">
+                        <i class="fas fa-check-circle"></i> 100% Certified
+                    </div>
+                    <div class="badge-small">
+                        <i class="fas fa-shipping-fast"></i> Insured Shipping
+                    </div>
+                    <div class="badge-small">
+                        <i class="fas fa-undo"></i> 7 Day Returns
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 20px; width: fit-content; pointer-events: none;">
+                        <img src="C:/Users/AE/.gemini/antigravity/brain/9f293631-b3f2-425d-9428-3f01c92640ba/uploaded_media_1769504380522.png"
+                            alt="MISA Logo" class="brand-custom-icon">
+                        <div class="logo-text">
+                            <span class="brand-name">MISA</span>
+                            <span class="brand-subtitle">Jewellery</span>
+                        </div>
+                    </a>
+                    <p>Crafting memories in pure gold. Your trusted partner for every celebration.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="#">Gold Rings</a></li>
+                        <li><a href="#">Necklaces</a></li>
+                        <li><a href="#">Bridal Sets</a></li>
+                        <li><a href="#">Daily Wear</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchange</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> ApexWebWorks - All Rights Reserved.</p>
+                <p>Website crafted by ApexWebWorks - Precision. Creativity. Performance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Inline script for product gallery for now, move to script.js if it grows
+        function changeImage(src) {
+            document.getElementById('mainImg').src = src;
+            // Update active state
+            document.querySelectorAll('.thumb').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (thumb.querySelector('img').src === src) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

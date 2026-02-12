@@ -1,0 +1,37 @@
+:root {
+    /* ULTRA-PREMIUM MIDNIGHT SAPPHIRE PALETTE */
+    --color-bg: #020408;
+    /* Midnight Navy (Near Black) */
+    --color-bg-secondary: #081020;
+    /* Dark Sapphire Base */
+    --color-card-bg: #0a1525;
+    /* Steel Blue/Navy Tint */
+
+    --color-text: #EAEAEA;
+    /* High Contrast Off-White */
+    --color-text-muted: #8da9c4;
+    /* Steel Blue Grey */
+
+    --primary: #D4AF37;
+    /* Antique Gold */
+    --color-gold: #D4AF37;
+    --color-gold-hover: #F4E5B0;
+
+    --color-accent: #112240;
+    /* Deep Sapphire Accent */
+    --color-border: #1c2a45;
+    /* Sapphire Border */
+
+    /* Spacing & Layout */
+    --radius: 12px;
+    --header-height: 90px;
+
+    /* Shadows */
+    --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 20px 50px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-gold: 0 0 25px rgba(212, 175, 55, 0.2);
+
+    /* Transitions */
+    --transition: all 0.4s ease;
+}

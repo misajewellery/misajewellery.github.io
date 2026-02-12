@@ -1,0 +1,160 @@
+.container {
+    max-width: 1200px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1rem;
+}
+
+.header h2 {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--bg-main);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: var(--transition);
+}
+
+.item:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.iconBtn {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.iconBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+
+.deleteBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+/* Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.formGroup input[type="text"] {
+    padding: 0.75rem;
+    background: var(--bg-input);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+}
+
+.formGroup input[type="text"]:focus {
+    border-color: var(--primary);
+}
+
+.colorInputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-input);
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.colorInputWrapper input[type="color"] {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.submitBtn {
+    background: var(--primary);
+    color: #0f172a;
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.submitBtn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

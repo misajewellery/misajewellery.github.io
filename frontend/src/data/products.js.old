@@ -1,0 +1,105 @@
+import earrings from '../assets/earrings.jpeg';
+
+import bangles from '../assets/bangles.jpeg';
+import necklaces from '../assets/necklaces.jpeg';
+import rings from '../assets/rings.jpeg';
+import bridal from '../assets/bridal.jpeg';
+
+export const products = [
+    {
+        id: 1,
+        name: 'Royal Gold Necklace',
+        category: 'diamond-necklaces',
+        metal: '22K Gold',
+        weight: '15.5g',
+        price: 95000,
+        image: necklaces,
+        isSignature: true,
+        isFavorite: false,
+        material: 'Gold'
+    },
+    {
+        id: 2,
+        name: 'Diamond Solitaire Ring',
+        category: 'gold-rings',
+        metal: '18K White Gold',
+        weight: '3.2g',
+        price: 125000,
+        image: rings,
+        isSignature: false,
+        isFavorite: true,
+        material: 'Silver with Diamond'
+    },
+    {
+        id: 3,
+        name: 'Bridal Choker Set',
+        category: 'bridal-sets',
+        metal: '22K Gold',
+        weight: '45.8g',
+        price: 285000,
+        image: bridal,
+        isSignature: true,
+        isFavorite: true,
+        material: 'Gold with Diamond'
+    },
+    {
+        id: 4,
+        name: 'Elegant Gold Chain',
+        category: 'daily-wear',
+        metal: '22K Gold',
+        weight: '8.5g',
+        price: 52000,
+        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop',
+        isSignature: false,
+        isFavorite: false,
+        material: 'Gold'
+    },
+    {
+        id: 5,
+        name: 'Gold Coin - Lakshmi',
+        category: 'gifts-coins',
+        metal: '24K Gold',
+        weight: '10g',
+        price: 62000,
+        image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2070&auto=format&fit=crop',
+        isSignature: false,
+        isFavorite: false,
+        material: 'Gold'
+    },
+    {
+        id: 6,
+        name: 'Temple Jewellery Set',
+        category: 'bridal-sets',
+        metal: '22K Gold',
+        weight: '65.2g',
+        price: 405000,
+        image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=2070&auto=format&fit=crop',
+        isSignature: true,
+        isFavorite: false,
+        material: 'Gold'
+    },
+    {
+        id: 7,
+        name: 'Silver Charm Bracelet',
+        category: 'bangles',
+        metal: 'Sterling Silver',
+        weight: '12g',
+        price: 15000,
+        image: bangles,
+        isSignature: false,
+        isFavorite: false,
+        material: 'Silver'
+    },
+    {
+        id: 8,
+        name: 'Diamond Studs',
+        category: 'earrings',
+        metal: '18K White Gold',
+        weight: '2g',
+        price: 45000,
+        image: earrings,
+        isSignature: false,
+        isFavorite: false,
+        material: 'Gold with Diamond'
+    }
+];
