@@ -1,5 +1,4 @@
 import express from "express";
-import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
@@ -14,17 +13,11 @@ import cors from "cors";
 
 // ES module __dirname fix
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename); 
 
-// 🔥 THIS IS THE MAIN FIX
-dotenv.config({ path: path.join(__dirname, "../.env") });
-
-// Debug check (temporary)
-console.log("MONGO_URI =", process.env.MONGO_URI);
-
-// Stop app if env missing
+// Expect required variables to be provided by the runtime environment
 if (!process.env.MONGO_URI) {
-    console.error("❌ MONGO_URI not loaded from .env");
+    console.error("❌ MONGO_URI is not set in the environment");
     process.exit(1);
 }
 
