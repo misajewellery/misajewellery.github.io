@@ -51,17 +51,18 @@ function AdminLogin() {
                 <div className="login-card">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email" className="input-label">EMAIL</label>
+                            <label htmlFor="email" className="input-label">EMAIL OR USERNAME</label>
                             <div className="input-wrapper">
                                 <input
                                     type="email"
                                     id="email"
                                     name="email"
                                     className="form-input"
-                                    placeholder="admin@gmail.com"
+                                    placeholder="admin@gmail.com or admin"
                                     value={formData.email}
                                     onChange={handleChange}
                                     autoComplete="email"
+                                    required
                                 />
                             </div>
                         </div>
@@ -85,6 +86,7 @@ function AdminLogin() {
                                     value={formData.password}
                                     onChange={handleChange}
                                     autoComplete="current-password"
+                                    required
                                 />
                                 <button
                                     type="button"

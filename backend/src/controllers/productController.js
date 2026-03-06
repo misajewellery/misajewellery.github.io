@@ -114,9 +114,23 @@ const updateProduct = asyncHandler(async (req, res) => {
         throw new Error('Product not found');
     }
 
+    const updateData = { ...req.body };
+    const incomingCategoryId = updateData.categoryId ? String(updateData.categoryId) : null;
+    const currentCategoryId = String(product.categoryId);
+    const effectiveCategoryId = incomingCategoryId || currentCategoryId;
+
+    const effectiveCategory = await Category.findById(effectiveCategoryId).select('code');
+    const expectedSkuPrefix = effectiveCategory ? `MISA-${effectiveCategory.code}-` : null;
+    const categoryChanged = incomingCategoryId && incomingCategoryId !== currentCategoryId;
+    const skuPrefixMismatch = expectedSkuPrefix && (!product.sku || !product.sku.startsWith(expectedSkuPrefix));
+
+    if (categoryChanged || skuPrefixMismatch) {
+        updateData.sku = await generateSKU(effectiveCategoryId);
+    }
+
     const updatedProduct = await Product.findByIdAndUpdate(
         req.params.id,
-        req.body,
+        updateData,
         { new: true }
     );
 

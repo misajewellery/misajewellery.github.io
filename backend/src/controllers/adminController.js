@@ -17,14 +17,16 @@ const generateToken = (id) => {
 // @access  Public
 const loginAdmin = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body;
-    const identifier = email ? email.toLowerCase() : username;
+    const identifierInput = (email ?? username ?? '').trim();
+    const identifier = identifierInput.toLowerCase();
 
     if (!identifier || !password) {
         res.status(400);
         throw new Error('Please provide email/username and password');
     }
 
-    const admin = email
+    const isEmailIdentifier = identifier.includes('@');
+    const admin = isEmailIdentifier
         ? await Admin.findOne({ email: identifier })
         : await Admin.findOne({ username: identifier });
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaPlus, FaChevronLeft, FaTrash, FaPen } from 'react-icons/fa';
-import api from '../services/api';
+import api, { BACKEND_BASE_URL } from '../services/api';
 import { toast } from 'react-toastify';
 import ProductModal from '../components/ProductModal';
 import '../styles/Products.css';
@@ -15,6 +15,12 @@ const Products = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState(null);
     const navigate = useNavigate();
+
+    const resolveImageUrl = (imageUrl) => {
+        if (!imageUrl) return '';
+        if (imageUrl.startsWith('http')) return imageUrl;
+        return `${BACKEND_BASE_URL}${imageUrl}`;
+    };
 
     // Fetch Logic
     const fetchData = async () => {
@@ -141,7 +147,7 @@ const Products = () => {
                 ) : products.map(product => (
                     <div key={product._id} className="product-card">
                         <img
-                            src={`http://localhost:5001${product.imageUrl}`}
+                            src={resolveImageUrl(product.imageUrl)}
                             alt={product.name}
                             className="product-thumb"
                         />

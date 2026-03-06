@@ -15,8 +15,8 @@ const run = async () => {
     const password = process.env.ADMIN_PASSWORD;
     const passwordHash = process.env.ADMIN_PASSWORD_HASH;
 
-    if (!email || !username || (!password && !passwordHash)) {
-        throw new Error("Missing ADMIN_EMAIL/ADMIN_USERNAME and ADMIN_PASSWORD or ADMIN_PASSWORD_HASH in .env");
+    if (!email || !username) {
+        throw new Error("Missing ADMIN_EMAIL/ADMIN_USERNAME in .env");
     }
 
     await connectDB();
@@ -27,12 +27,16 @@ const run = async () => {
         existingAdmin.username = username;
         if (passwordHash) {
             existingAdmin.password = passwordHash;
-        } else {
+        } else if (password) {
             existingAdmin.password = password;
         }
         await existingAdmin.save();
         console.log("Admin updated");
         return;
+    }
+
+    if (!password && !passwordHash) {
+        throw new Error("Missing ADMIN_PASSWORD or ADMIN_PASSWORD_HASH in .env for initial admin creation");
     }
 
     await Admin.create({

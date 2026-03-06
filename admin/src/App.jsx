@@ -7,7 +7,6 @@ import AdminLogin from './pages/AdminLogin';
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
 import Categories from './pages/Categories';
-import Sales from './pages/Sales';
 import Settings from './pages/Settings';
 import BottomNav from './components/BottomNav';
 import './index.css';
@@ -56,12 +55,6 @@ function App() {
           <Route path="/admin/categories" element={
             <ProtectedRoute>
               <Categories />
-            </ProtectedRoute>
-          } />
-
-          <Route path="/admin/sales" element={
-            <ProtectedRoute>
-              <Sales />
             </ProtectedRoute>
           } />
 

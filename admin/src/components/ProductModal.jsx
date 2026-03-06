@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaCamera, FaLock } from 'react-icons/fa';
-import api from '../services/api';
+import api, { BACKEND_BASE_URL } from '../services/api';
 import { toast } from 'react-toastify';
 import '../styles/ProductModal.css';
 
@@ -18,6 +18,12 @@ const ProductModal = ({ isOpen, onClose, onSave, onDelete, categories, productTo
     const [previewUrl, setPreviewUrl] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const resolveImageUrl = (imageUrl) => {
+        if (!imageUrl) return null;
+        if (imageUrl.startsWith('http')) return imageUrl;
+        return `${BACKEND_BASE_URL}${imageUrl}`;
+    };
+
     useEffect(() => {
         if (productToEdit) {
             setFormData({
@@ -29,7 +35,7 @@ const ProductModal = ({ isOpen, onClose, onSave, onDelete, categories, productTo
                 price: productToEdit.price || '',
                 isActive: productToEdit.isActive
             });
-            setPreviewUrl(productToEdit.imageUrl ? `http://localhost:5001${productToEdit.imageUrl}` : null);
+            setPreviewUrl(resolveImageUrl(productToEdit.imageUrl));
         } else {
             const preferredCategoryId = defaultCategoryId && defaultCategoryId !== ''
                 ? defaultCategoryId

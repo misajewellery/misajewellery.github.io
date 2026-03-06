@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBox, FaLayerGroup, FaCheckCircle, FaTimesCircle, FaPlus, FaGem, FaCloudUploadAlt, FaShoppingBag } from 'react-icons/fa'; // Icons matching screenshot roughly
+import { FaBox, FaLayerGroup, FaCheckCircle, FaTimesCircle, FaPlus, FaGem, FaCloudUploadAlt, FaShoppingBag, FaTag } from 'react-icons/fa';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 import '../styles/Dashboard.css'; // I will create this css file
@@ -12,14 +12,55 @@ const Dashboard = () => {
         activeProducts: 0,
         inactiveProducts: 0
     });
+    const [recentAdded, setRecentAdded] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    const formatTime = (dateValue) => {
+        const date = new Date(dateValue);
+        if (Number.isNaN(date.getTime())) return 'Just now';
+
+        const minutes = Math.floor((Date.now() - date.getTime()) / (1000 * 60));
+        if (minutes < 1) return 'Just now';
+        if (minutes < 60) return `${minutes} min ago`;
+
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours} hr ago`;
+
+        const days = Math.floor(hours / 24);
+        return `${days} day${days > 1 ? 's' : ''} ago`;
+    };
 
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const { data } = await api.get('/admin/stats');
-                setStats(data);
+                const [{ data: statsData }, { data: productsData }, { data: categoriesData }] = await Promise.all([
+                    api.get('/admin/stats'),
+                    api.get('/admin/products'),
+                    api.get('/admin/categories')
+                ]);
+
+                setStats(statsData);
+
+                const recentProducts = productsData.map((product) => ({
+                    id: product._id,
+                    type: 'Product',
+                    name: product.name,
+                    createdAt: product.createdAt
+                }));
+
+                const recentCategories = categoriesData.map((category) => ({
+                    id: category._id,
+                    type: 'Category',
+                    name: category.name,
+                    createdAt: category.createdAt
+                }));
+
+                const combinedRecent = [...recentProducts, ...recentCategories]
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                    .slice(0, 5);
+
+                setRecentAdded(combinedRecent);
             } catch (error) {
                 toast.error('Failed to load stats');
             } finally {
@@ -87,25 +128,27 @@ const Dashboard = () => {
                 </button>
             </div>
 
-            <h2 className="section-title">Recent Sales Activity</h2>
+            <h2 className="section-title">Recent Added</h2>
             <div className="activity-list">
-                {/* Mock/Static Data as per screenshot since backend doesn't support sales yet */}
-                <div className="activity-item">
-                    <div className="activity-icon-box"><FaShoppingBag /></div>
-                    <div className="activity-details">
-                        <div className="activity-name">Diamond Halo Ring</div>
-                        <div className="activity-time">2 minutes ago</div>
+                {recentAdded.length > 0 ? recentAdded.map((item) => (
+                    <div className="activity-item" key={`${item.type}-${item.id}`}>
+                        <div className="activity-icon-box">
+                            {item.type === 'Product' ? <FaShoppingBag /> : <FaTag />}
+                        </div>
+                        <div className="activity-details">
+                            <div className="activity-name">{item.name}</div>
+                            <div className="activity-time">{formatTime(item.createdAt)}</div>
+                        </div>
+                        <div className="activity-type">{item.type}</div>
                     </div>
-                    <div className="activity-price">$4,250</div>
-                </div>
-                <div className="activity-item">
-                    <div className="activity-icon-box"><FaShoppingBag /></div>
-                    <div className="activity-details">
-                        <div className="activity-name">Gold Chain Necklace</div>
-                        <div className="activity-time">45 minutes ago</div>
+                )) : (
+                    <div className="activity-item">
+                        <div className="activity-details">
+                            <div className="activity-name">No recent items</div>
+                            <div className="activity-time">Add products or categories to view them here</div>
+                        </div>
                     </div>
-                    <div className="activity-price">$890</div>
-                </div>
+                )}
             </div>
         </div>
     );

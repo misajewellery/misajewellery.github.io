@@ -7,6 +7,7 @@ import '../styles/Categories.css';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
@@ -17,6 +18,12 @@ const Categories = () => {
     const navigate = useNavigate();
 
     const backendBaseUrl = api.defaults.baseURL?.replace(/\/api\/?$/, '') || '';
+
+    const resolveCategoryImageUrl = (imageUrl) => {
+        if (!imageUrl) return '';
+        if (imageUrl.startsWith('http')) return imageUrl;
+        return `${backendBaseUrl}${imageUrl}`;
+    };
 
     const buildCategoryCode = (name) => {
         const cleaned = (name || '').trim();
@@ -36,10 +43,14 @@ const Categories = () => {
 
     const fetchCategories = async () => {
         try {
-            const { data } = await api.get('/admin/categories');
-            setCategories(data);
+            const [{ data: categoriesData }, { data: productsData }] = await Promise.all([
+                api.get('/admin/categories'),
+                api.get('/admin/products')
+            ]);
+            setCategories(categoriesData);
+            setProducts(productsData);
         } catch (error) {
-            toast.error('Failed to load categories');
+            toast.error('Failed to load categories/products');
         } finally {
             setLoading(false);
         }
@@ -158,8 +169,17 @@ const Categories = () => {
         setEditingCategory(category);
         setFormData({ name: category.name || '', imageUrl: category.imageUrl || '' });
         setImageFile(null);
-        setImagePreview(category.imageUrl ? `${backendBaseUrl}${category.imageUrl}` : '');
+        setImagePreview(resolveCategoryImageUrl(category.imageUrl));
         setShowModal(true);
+    };
+
+    const getProductsForCategory = (categoryId) => {
+        return products.filter((product) => {
+            const productCategoryId = typeof product.categoryId === 'object'
+                ? product.categoryId?._id
+                : product.categoryId;
+            return productCategoryId === categoryId;
+        });
     };
 
     return (
@@ -171,29 +191,51 @@ const Categories = () => {
             </div>
 
             <div className="categories-list">
-                {loading ? <p>Loading...</p> : categories.map(cat => (
-                    <div key={cat._id} className="category-item">
-                        <div className="category-info">
-                            <h3>{cat.name}</h3>
-                            {cat.imageUrl && (
-                                <img
-                                    src={`${backendBaseUrl}${cat.imageUrl}`}
-                                    alt={cat.name}
-                                    className="category-thumb"
-                                />
-                            )}
-                            <p>Slug: {cat.slug}</p>
+                {loading ? <p>Loading...</p> : categories.map(cat => {
+                    const categoryProducts = getProductsForCategory(cat._id);
+
+                    return (
+                        <div key={cat._id} className="category-item">
+                            <div className="category-main">
+                                {cat.imageUrl ? (
+                                    <img
+                                        src={resolveCategoryImageUrl(cat.imageUrl)}
+                                        alt={cat.name}
+                                        className="category-thumb"
+                                    />
+                                ) : (
+                                    <div className="category-thumb category-thumb-placeholder">No Image</div>
+                                )}
+
+                                <div className="category-info">
+                                    <h3>{cat.name}</h3>
+                                    <p>Slug: {cat.slug}</p>
+                                    <p>Products: {categoryProducts.length}</p>
+
+                                    <div className="category-product-list">
+                                        {categoryProducts.length > 0 ? (
+                                            categoryProducts.slice(0, 3).map((product) => (
+                                                <span key={product._id} className="category-product-chip">
+                                                    {product.name}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <span className="category-product-empty">No products</span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="category-actions">
+                                <button className="edit-btn" onClick={() => openEditModal(cat)}>
+                                    <FaEdit />
+                                </button>
+                                <button className="delete-btn" onClick={() => handleDelete(cat._id)}>
+                                    <FaTrash />
+                                </button>
+                            </div>
                         </div>
-                        <div className="category-actions">
-                            <button className="edit-btn" onClick={() => openEditModal(cat)}>
-                                <FaEdit />
-                            </button>
-                            <button className="delete-btn" onClick={() => handleDelete(cat._id)}>
-                                <FaTrash />
-                            </button>
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {showModal && (

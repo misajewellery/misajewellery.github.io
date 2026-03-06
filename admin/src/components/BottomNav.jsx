@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaThLarge, FaBox, FaChartBar, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaThLarge, FaBox, FaLayerGroup, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/BottomNav.css';
 
@@ -23,9 +23,9 @@ const BottomNav = () => {
                 <FaBox className="nav-icon" />
                 <span className="nav-label">Products</span>
             </NavLink>
-            <NavLink to="/admin/sales" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-                <FaChartBar className="nav-icon" />
-                <span className="nav-label">Sales</span>
+            <NavLink to="/admin/categories" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+                <FaLayerGroup className="nav-icon" />
+                <span className="nav-label">Categories</span>
             </NavLink>
             <NavLink to="/admin/settings" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
                 <FaCog className="nav-icon" />
