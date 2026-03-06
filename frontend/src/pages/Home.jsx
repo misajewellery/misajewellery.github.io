@@ -217,9 +217,10 @@ const Home = () => {
                         }
 
                         return displayedCategories.map((category) => {
+                            const fallbackImage = category.image || images.ring;
                             const imageSrc = category.imageUrl
                                 ? getImageUrl(category.imageUrl)
-                                : category.image || images.ring;
+                                : fallbackImage;
 
                             return (
                                 <div
@@ -227,7 +228,15 @@ const Home = () => {
                                     className={classes.categoryCard}
                                     onClick={() => navigate(`/collections/${category.slug}`)}
                                 >
-                                    <img src={imageSrc} alt={category.name} className={classes.categoryImg} />
+                                    <img
+                                        src={imageSrc}
+                                        alt={category.name}
+                                        className={classes.categoryImg}
+                                        onError={(event) => {
+                                            event.currentTarget.onerror = null;
+                                            event.currentTarget.src = fallbackImage;
+                                        }}
+                                    />
                                     <div className={classes.categoryOverlay}>
                                         <div className={classes.categoryName}>{category.name}</div>
                                     </div>
@@ -279,6 +288,10 @@ const Home = () => {
                                     draggable="false"
                                     role="button"
                                     tabIndex={0}
+                                    onError={(event) => {
+                                        event.currentTarget.onerror = null;
+                                        event.currentTarget.src = images.ring;
+                                    }}
                                     onClick={() => navigate(`/product/${product._id}`)}
                                     onKeyDown={(event) => {
                                         if (event.key === 'Enter' || event.key === ' ') {
